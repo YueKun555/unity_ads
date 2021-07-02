@@ -1,4 +1,4 @@
-package com.yk.health
+package com.yk.run
 
 import io.flutter.embedding.android.FlutterActivity
 
