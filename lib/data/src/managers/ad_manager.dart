@@ -86,6 +86,7 @@ class AdManager {
       }
     } else {
       _adClickCount++;
+      initAd();
       if (_adClickCount > 6) {
         exit(0);
       }
