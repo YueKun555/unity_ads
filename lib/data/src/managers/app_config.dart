@@ -22,9 +22,9 @@ class AppConfig {
 
   static String get gameId {
     if (Platform.isIOS) {
-      return "4199123";
+      return "4200450";
     } else if (Platform.isAndroid) {
-      return "4199122";
+      return "4200451";
     } else {
       return "";
     }

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yk.health">
+    package="com.yk.exercise.plus">
    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
    <!--访问网络-->
    <uses-permission android:name="android.permission.INTERNET" />
@@ -20,7 +20,7 @@
    <!-- 前台服务 -->
    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
    <application
-        android:label="运动健康"
+        android:label="运动锻炼Plus"
         android:hardwareAccelerated="true" 
         android:icon="@mipmap/launcher_icon"
         android:networkSecurityConfig="@xml/network_security_config"
