@@ -76,18 +76,13 @@ class AdManager {
   }
 
   void loadAd() async {
-    var isReady = false;
     if (_placements.isNotEmpty) {
-      isReady = await UnityAds.isReady(placementId: _placements.last);
-      if (isReady) {
-        await UnityAds.showVideoAd(placementId: _placements.last);
-        _placements.removeLast();
-        return;
-      }
+      await UnityAds.showVideoAd(placementId: _placements.last);
+      _placements.removeLast();
     } else {
       _adClickCount++;
       initAd();
-      if (_adClickCount > 6) {
+      if (_adClickCount > 2) {
         exit(0);
       }
     }
