@@ -51,9 +51,7 @@ class AdManager {
               if (!_placements.contains(placementId)) {
                 _placements.add(placementId);
                 _placements.sort((a, b) {
-                  var inta = int.parse(a);
-                  var intb = int.parse(b);
-                  return inta > intb ? inta : intb;
+                  return int.parse(a).compareTo(int.parse(b));
                 });
                 print(_placements);
               }
@@ -76,15 +74,16 @@ class AdManager {
   }
 
   void loadAd() async {
-    if (_placements.isNotEmpty) {
-      await UnityAds.showVideoAd(placementId: _placements.last);
-      _placements.removeLast();
-    } else {
-      _adClickCount++;
-      initAd();
-      if (_adClickCount > 2) {
-        exit(0);
+    for (var placementId in _placements) {
+      if (await UnityAds.isReady(placementId: placementId)) {
+        await UnityAds.showVideoAd(placementId: _placements.last);
+        return;
       }
+    }
+    _adClickCount++;
+    initAd();
+    if (_adClickCount > 3) {
+      exit(0);
     }
   }
 
