@@ -61,16 +61,16 @@ class AdManager {
 
   void loadAd() async {
     var placements = [
-      "05",
       "5",
-      "04",
+      "05",
       "4",
-      "03",
+      "04",
       "3",
-      "02",
+      "03",
       "2",
-      "01",
+      "02",
       "1",
+      "01",
       "unity_standard_placement"
     ];
     for (var placementId in placements) {
