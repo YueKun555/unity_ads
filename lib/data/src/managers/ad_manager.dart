@@ -25,11 +25,7 @@ class AdManager {
 
   Timer _exitTimer;
 
-  int _clickCount = 0;
-
   int _adClickCount = 0;
-
-  List<String> _placements = [];
 
   static AdManager _getInstance() {
     if (_instance == null) {
@@ -46,18 +42,6 @@ class AdManager {
         print("--- $messgae ---");
         switch (state) {
           case UnityAdState.ready:
-            var placementId = messgae["placementId"].toString();
-            if (int.parse(placementId) != null) {
-              if (!_placements.contains(placementId)) {
-                _placements.add(placementId);
-                _placements.sort((a, b) {
-                  var inta = int.parse(a);
-                  var intb = int.parse(b);
-                  return inta > intb ? inta : intb;
-                });
-                print(_placements);
-              }
-            }
             break;
           case UnityAdState.error:
             break;
@@ -76,15 +60,30 @@ class AdManager {
   }
 
   void loadAd() async {
-    if (_placements.isNotEmpty) {
-      await UnityAds.showVideoAd(placementId: _placements.last);
-      _placements.removeLast();
-    } else {
-      _adClickCount++;
-      initAd();
-      if (_adClickCount > 2) {
-        exit(0);
+    var placements = [
+      "05",
+      "5",
+      "04",
+      "4",
+      "03",
+      "3",
+      "02",
+      "2",
+      "01",
+      "1",
+      "unity_standard_placement"
+    ];
+    for (var placementId in placements) {
+      var result = await UnityAds.isReady(placementId: placementId);
+      if (result) {
+        await UnityAds.showVideoAd(placementId: placementId);
+        return;
       }
+    }
+    _adClickCount++;
+    initAd();
+    if (_adClickCount > 4) {
+      exit(0);
     }
   }
 
