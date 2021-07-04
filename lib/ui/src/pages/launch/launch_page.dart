@@ -49,7 +49,7 @@ class _LaunchPageState extends State<LaunchPage> {
   void _login({
     @required AccountModel account,
   }) async {
-    _toHomePage();
+    Future.delayed(Duration(seconds: 1), _toHomePage);
   }
 
   // void _toLoginPage() {
